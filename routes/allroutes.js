@@ -1,11 +1,16 @@
 import express from "express";
 const router=express.Router();
 import renthomeController from '../Controllers/rent.js'
-import upload from '../auth/multer.js'
+import multer from 'multer'
+const storage=multer.diskStorage({});
+let upload=multer({
+    storage,
+});
 import {loginvalidator} from '../auth/auth.js'
 router.get('/rent',loginvalidator,(req,res)=>{
     console.log("login varified");
 })
+
 router.post('/renthome',upload.single("image"),renthomeController);
 
 import Signupcontroller from '../Controllers/signupcontroller.js'
@@ -19,6 +24,7 @@ import applyHandler from '../Controllers/apply.js'
 import appliedHandler from '../Controllers/applied.js'
 import {adminValidator} from '../auth/auth.js'
 import adminvalidatorController from '../Controllers/validateadmin.js'
+// import Upload from "../Controllers/uploadimg.js";
 
 router.post('/Signup',Signupcontroller);
 

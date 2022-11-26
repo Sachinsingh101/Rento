@@ -12,7 +12,6 @@ const loginvalidator=async(req,res,next)=>{
                     return res.json({msg:'Authorization denied'});
                 }else{
                     req.email=decoded.email;
-                    console.log(token)
                     next();
                 }
             })

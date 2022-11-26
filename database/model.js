@@ -38,6 +38,9 @@ const RentSchema=new mongoose.Schema({
     },
     image:{
         type:String
+    },
+    imgurl:{
+        type:String
     }
 })
 const applySchema=new mongoose.Schema({
