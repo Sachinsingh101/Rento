@@ -36,8 +36,12 @@ const deleteController=async(req,res)=>{
   try{
       const id=req.params.id;
       const item=await rentModel.findById(id);
-      const image=item.imgurl;
-      await cloudinary.v2.uploader.destroy(image).then((result)=>{
+      const urlArray=item.imgurl.split('/');
+      const image=urlArray[urlArray.length-1];
+      const imgurl=image.split('.');
+      const imgname=imgurl[0];
+      console.log(imgname);
+      cloudinary.v2.uploader.destroy(imgname).then((result)=>{
         console.log("image deleted from cloudinary successfully",result);
       })
       await rentModel.findByIdAndDelete(id);
