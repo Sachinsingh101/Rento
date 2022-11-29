@@ -8,10 +8,6 @@ cloudinary.config({
     api_secret:process.env.CLOUDINARY_SECRET 
   });
 
-
-
-
-
 const RenthomeController=async(req,res)=>{
     try{
           const file=req.file;
@@ -36,6 +32,20 @@ const RenthomeController=async(req,res)=>{
         console.log(err);
     }
 }
+const deleteController=async(req,res)=>{
+  try{
+      const id=req.params.id;
+      const item=await rentModel.findById(id);
+      const image=item.imgurl;
+      await cloudinary.v2.uploader.destroy(image).then((result)=>{
+        console.log("image deleted from cloudinary successfully",result);
+      })
+      await rentModel.findByIdAndDelete(id);
+      console.log('home deleted successfulll from database');
+  }catch(err){
+      console.log("error while deleting item");
+  }
+}
 
 
-export default RenthomeController;
+export {RenthomeController,deleteController};

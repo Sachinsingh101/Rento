@@ -1,6 +1,6 @@
 import express from "express";
 const router=express.Router();
-import renthomeController from '../Controllers/rent.js'
+import {RenthomeController} from '../Controllers/rent.js'
 import multer from 'multer'
 const storage=multer.diskStorage({});
 let upload=multer({
@@ -11,7 +11,7 @@ router.get('/rent',loginvalidator,(req,res)=>{
     console.log("login varified");
 })
 
-router.post('/renthome',upload.single("image"),renthomeController);
+router.post('/renthome',upload.single("image"),RenthomeController);
 
 import Signupcontroller from '../Controllers/signupcontroller.js'
 import Getdatacontroller from '../Controllers/getdata.js'
@@ -19,7 +19,7 @@ import Userchoicecontroller from '../Controllers/userchoicecontroller.js'
 import viewcontroller from '../Controllers/view.js'
 import Logincontroller from '../Controllers/login.js'
 import adminController from '../Controllers/admin.js'
-import deleteController from '../Controllers/deleteitem.js'
+import {deleteController} from '../Controllers/rent.js'
 import applyHandler from '../Controllers/apply.js'
 import appliedHandler from '../Controllers/applied.js'
 import {adminValidator} from '../auth/auth.js'
