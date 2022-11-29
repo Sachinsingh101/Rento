@@ -3,7 +3,6 @@ import Jwt  from "jsonwebtoken";
 const Signupcontroller=async(req,res)=>{
    try{
        const validate=await UserModel.find({email:req.body.email});
-       console.log(validate);
        if(validate.length>0){
         res.json("user already exist")
        }else{

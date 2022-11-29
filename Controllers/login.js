@@ -3,7 +3,6 @@ import Jwt from "jsonwebtoken"
 const Logincontroller=async(req,res)=>{
     try{
         const user=await UserModel.find({email:req.body.email})
-        console.log(user)
         if(user.length>=1){
             const token=Jwt.sign(
                 {name:req.body.name,email:req.body.email},
@@ -12,7 +11,7 @@ const Logincontroller=async(req,res)=>{
             )
             res.json(token);
         }else{
-            console.log("user not found");
+            res.json("user not found");
         }
     }catch(err){
         console.log("error while validating user",err);
