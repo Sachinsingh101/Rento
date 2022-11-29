@@ -8,17 +8,7 @@ cloudinary.config({
     api_secret:process.env.CLOUDINARY_SECRET 
   });
 
-//   let imgurl="";
 
-// const Uploadimg=async(req,res)=>{
-//     try{
-//         const result= await cloudinary.uploader.upload(req.files.image.path);
-//         imgurl=result.url
-//         console.log(req.files)
-//         console.log("image added successfully");
-//     }catch(err){
-//         console.log("error while adding image to cloudinary",err);
-//     }
 
 
 
@@ -38,7 +28,6 @@ const RenthomeController=async(req,res)=>{
                 type:req.body.type,
                 imgurl:url
             };
-            console.log(data)
             const uploadtodb=new rentModel(data);
             uploadtodb.save();
             console.log("save to database sccessfully");
